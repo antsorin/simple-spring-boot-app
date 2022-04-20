@@ -1,3 +1,7 @@
+# WARNING - this branch purposefully adds vulnerabilities to the application (SQL Injection, XSS, probably more).
+
+# IMPORTANT - Do NOT use this code in production and never attempt hacking techniques on applications for which you don't have explicit permissions to do so.
+
 # simple-spring-boot-app
 A simple application made with Spring Boot for educational purposes.
 

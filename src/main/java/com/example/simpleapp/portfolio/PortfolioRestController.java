@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class PortfolioRestController {
 
 	@Autowired
-	private CommentRepository commentRepository;
+	private CommentDangerousRepository commentRepository;
 
 	@GetMapping("/api/portfolio/comments")
 	public List<Comment> getComments() throws SQLException {
