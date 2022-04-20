@@ -29,9 +29,7 @@
 	<h2>Comments:</h2>
 	<div th:each="comment: ${comments}" class="comment-list">
 		<div class="comment-list-item">
-			<!-- TODO remove xss vulnerability -->
 			<h3 class="comment-title">[[${comment.name}]] says...</h3>
-			<!-- TODO remove xss vulnerability -->
 			<div class="comment-message">[[${comment.message}]]</div>
 		</div>
 	</div>
