@@ -1,0 +1,1 @@
+INSERT INTO comment (name, message) VALUES ('Tom', 'Some default comment');

@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Expires" content="0">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Portfolio demo</title>
+
+	<link rel="stylesheet" th:attr="href=${theme == 'dark' ? '/styles-dark.css' : '/styles.css'}">
+</head>
+
+<body>
+	<script>
+		function setTheme(themeName) {
+			window.location.href = '/portfolio?theme=' + themeName;
+		}
+	</script>
+
+	<button onclick="setTheme('light');">Light theme</button>
+	<button onclick="setTheme('dark');">Dark theme</button>
+
+	<h1>Portfolio</h1>
+	<p>Here is a description of my work.</p>
+	<p>Bla bla...</p>
+
+	<h2>Comments:</h2>
+	<div th:each="comment: ${comments}" class="comment-list">
+		<div class="comment-list-item">
+			<!-- TODO remove xss vulnerability -->
+			<h3 class="comment-title">[[${comment.name}]] says...</h3>
+			<!-- TODO remove xss vulnerability -->
+			<div class="comment-message">[[${comment.message}]]</div>
+		</div>
+	</div>
+
+	<h2>Your comment:</h2>
+	<form action="/portfolio" method="post">
+
+		<label for="name">Name:</label><br>
+		<input type="text" id="name" name="name" value="John"><br>
+
+		<label for="message">Message:</label><br>
+		<textarea id="message" name="message" rows="3" cols="50"></textarea><br>
+
+		<input type="submit" value="Submit">
+	</form>
+</body>
+
+</html>
