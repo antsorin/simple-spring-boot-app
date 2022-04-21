@@ -9,14 +9,30 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Portfolio demo</title>
 
-	<link rel="stylesheet" th:attr="href=${theme == 'dark' ? '/styles-dark.css' : '/styles.css'}">
+	<link id="themeStylesheet" rel="stylesheet">
+	<script src="/cookie-utils.js"></script>
+
 </head>
 
 <body>
 	<script>
 		function setTheme(themeName) {
-			window.location.href = '/portfolio?theme=' + themeName;
+			const stylesheetElement = document.getElementById("themeStylesheet");
+			stylesheetElement.href = (themeName === 'dark') ? '/styles-dark.css' : '/styles.css';
+			setCookie("myThemeCookie", themeName, 1);
 		}
+
+		function setThemeFromCookie() {
+			const themeCookie = getCookie("myThemeCookie");
+			if (themeCookie) {
+				setTheme(themeCookie);
+			}
+			else {
+				setTheme("light");
+			}
+		}
+
+		setThemeFromCookie();
 	</script>
 
 	<button onclick="setTheme('light');">Light theme</button>
